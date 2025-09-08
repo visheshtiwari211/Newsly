@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 class NewsRepository @Inject constructor(private val newsApi: NewsApi) {
     suspend fun getTopHeadline(country: String, category: String, apiKey: String) =
-        newsApi.getTopHeadlines(country = country, category = category, apiKey = apiKey)
+        newsApi.getTopHeadlines(country = country, apiKey = apiKey)
 }
