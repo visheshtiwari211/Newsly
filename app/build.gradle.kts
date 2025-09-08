@@ -59,7 +59,18 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
+    //retrofit dependency
+    implementation(libs.retrofit)
+
+    //okhttp dependency
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
     //hilt-dependencies
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+    //gson convertor factory
+    implementation(libs.converter.gson)
 }
