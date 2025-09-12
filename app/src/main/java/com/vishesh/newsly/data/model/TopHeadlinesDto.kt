@@ -1,7 +1,7 @@
 package com.vishesh.newsly.data.model
 
-data class TopHeadlines(
-    val articles: List<Article>,
+data class TopHeadlinesDto(
+    val articleDtos: List<ArticleDto>,
     val status: String,
     val totalResults: Int
 )

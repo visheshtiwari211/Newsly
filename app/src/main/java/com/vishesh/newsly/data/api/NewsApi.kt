@@ -1,5 +1,6 @@
 package com.vishesh.newsly.data.api
 
+import com.vishesh.newsly.data.model.TopHeadlinesDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -9,5 +10,5 @@ interface NewsApi {
     suspend fun getTopHeadlines(
         @Query("country") country: String,
         @Query("apiKey") apiKey: String
-    ): Response<Any>
+    ): Response<TopHeadlinesDto>
 }
