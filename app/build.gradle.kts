@@ -81,10 +81,17 @@ dependencies {
 
     //room dependency
     implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
 
     //sqlite dependency
     implementation(libs.androidx.sqlite.bundled)
+
+    // Room testing
+    testImplementation(libs.androidx.room.testing)
+
+    // optional for coroutines support
+    implementation(libs.androidx.room.ktx)
+
 }
 
 room {

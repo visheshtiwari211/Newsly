@@ -4,15 +4,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.vishesh.newsly.data.model.Article
 
 @Dao
 interface ArticleDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun createArticles(articles: List<Article>)
+    suspend fun insertArticles(articles: List<ArticleEntity>)
 
     @Query("SELECT * FROM articles")
-    suspend fun getAllArticles(): List<Article>
+    suspend fun getAllArticles(): List<ArticleEntity>
 
     @Query("DELETE FROM articles")
     suspend fun deleteAll()
