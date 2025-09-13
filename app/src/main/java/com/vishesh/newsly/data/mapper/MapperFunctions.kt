@@ -23,6 +23,12 @@ fun List<ArticleDto>.toListEntity(): List<ArticleEntity> {
     }
 }
 
+fun List<ArticleEntity>.toArticles(): List<Article> {
+    return this.map {
+        it.toArticles()
+    }
+}
+
 fun ArticleEntity.toArticles(): Article {
     return Article(
         author = this.author,
