@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.navigation.common.ktx)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,6 +78,9 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
+    //hilt-navigation
+    implementation(libs.androidx.hilt.navigation.compose)
+
     //gson convertor factory
     implementation(libs.converter.gson)
 
@@ -91,6 +96,10 @@ dependencies {
 
     // optional for coroutines support
     implementation(libs.androidx.room.ktx)
+
+    //coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
 }
 
