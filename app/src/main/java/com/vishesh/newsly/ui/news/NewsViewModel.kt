@@ -24,16 +24,20 @@ class NewsViewModel @Inject constructor(private val repository: NewsRepository):
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true)
             try {
-                repository.getTopHeadline(country = "us", apiKey = "")
+                repository.getTopHeadline(country = "us", apiKey = "35e96e729a6848a48c1c31aaf412b671")
                 repository.getAllArticles().collect { articleEntities ->
-                    val articles = articleEntities.toArticles()
-                    _uiState.value = NewsUiState(
-                        isLoading = false,
-                        articles = articles,
-                        error = null
-                    )
+                    Log.d("NewsViewModel", "articleEntities: $articleEntities")
+                    articleEntities?.let { articleEntities ->
+                        val articles = articleEntities.toArticles()
+                        _uiState.value = NewsUiState(
+                            isLoading = false,
+                            articles = articles,
+                            error = null
+                        )
+                    } ?: Log.e("NewsViewModel", "articleEntities is null")
                 }
             } catch (e: Exception) {
+                Log.e("NewsViewModel", "Exception: ${e.message}")
                 _uiState.value = NewsUiState(isLoading = false, error = e.message)
             }
         }
