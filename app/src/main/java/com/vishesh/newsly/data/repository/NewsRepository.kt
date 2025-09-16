@@ -12,9 +12,11 @@ class NewsRepository @Inject constructor(private val newsApi: NewsApi, private v
     fun getAllArticles(): Flow<List<ArticleEntity>> = articleDao.getAllArticles()
 
     suspend fun getTopHeadline(country: String, apiKey: String) {
+        Log.d("NewsRepository", "inside getTopHeadlines")
         val response = newsApi.getTopHeadlines(country = country, apiKey = apiKey)
         if (response.isSuccessful) {
-            response.body()?.articleDtos?.let { articlesDto ->
+            Log.d("NewsRepository", "inside getTopHeadlines response: ${response.body()}")
+            response.body()?.articles?.let { articlesDto ->
                 val articlesEntityList = articlesDto.toListEntity()
                 articleDao.insertArticles(articlesEntityList)
             } ?: Log.e("NewsRepository", "getTopHeadlines ResponseBody articles is null: $response")
