@@ -75,7 +75,7 @@ fun FeedScreen(
                 shape = RoundedCornerShape(24.dp),
                 modifier = Modifier.height(48.dp)
             ) {
-                Text("Menu", color = Color.White)
+                Text("Menu", color = Color.White, style = MaterialTheme.typography.bodyMedium)
             }
         }
 
