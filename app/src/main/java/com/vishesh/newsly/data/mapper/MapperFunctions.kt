@@ -9,7 +9,7 @@ fun ArticleDto.toEntity(): ArticleEntity {
         author = this.author,
         description = this.description,
         publishedAt = this.publishedAt,
-        sourceDto = this.sourceDto,
+        sourceDto = this.source,
         title = this.title,
         url = this.url,
         urlToImage = this.urlToImage,
