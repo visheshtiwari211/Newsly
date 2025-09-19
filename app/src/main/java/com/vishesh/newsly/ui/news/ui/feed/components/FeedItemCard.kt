@@ -1,5 +1,6 @@
-package com.vishesh.newsly.ui.news.ui
+package com.vishesh.newsly.ui.news.ui.feed.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,9 +21,9 @@ import coil3.compose.AsyncImage
 import com.vishesh.newsly.domain.Article
 
 @Composable
-fun FeedItemCard(article: Article) {
+fun FeedItemCard(article: Article, onArticleClick: (String) -> Unit) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().clickable { onArticleClick(article.url ?: "") },
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(4.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)

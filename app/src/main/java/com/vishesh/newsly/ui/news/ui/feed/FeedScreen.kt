@@ -1,4 +1,4 @@
-package com.vishesh.newsly.ui.news.ui
+package com.vishesh.newsly.ui.news.ui.feed
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -25,12 +25,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.vishesh.newsly.ui.news.NewsViewModel
+import com.vishesh.newsly.ui.news.ui.feed.components.FeedItemCard
+import com.vishesh.newsly.ui.news.viewmodel.FeedViewModel
 
 @Composable
 fun FeedScreen(
     modifier: Modifier = Modifier,
-    viewModel: NewsViewModel = hiltViewModel()
+    onArticleClick: (String) -> Unit,
+    viewModel: FeedViewModel = hiltViewModel()
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
     Log.d("FeedScreen", "uiState: $uiState")
@@ -79,7 +81,7 @@ fun FeedScreen(
             contentPadding = PaddingValues(bottom = 16.dp)
         ) {
             items(items = uiState.value.articles) { article ->
-                FeedItemCard(article)
+                FeedItemCard(article, onArticleClick = onArticleClick)
             }
         }
     }

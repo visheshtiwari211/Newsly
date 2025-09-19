@@ -5,14 +5,16 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.vishesh.newsly.ui.news.ui.FeedScreen
+import com.vishesh.newsly.ui.navigation.articleDetail.articleDetailsScreen
+import com.vishesh.newsly.ui.news.ui.feed.FeedScreen
 
 const val feedScreenRoute = "feed_screen_route"
 
 fun NavController.navigateToFeedScreen(navOptions: NavOptions) = this.navigate(feedScreenRoute, navOptions)
 
-fun NavGraphBuilder.FeedScreenSection(modifier: Modifier = Modifier) {
+fun NavGraphBuilder.FeedScreenSection(modifier: Modifier = Modifier, onArticleClick: (String) -> Unit, onBackClick: () -> Unit) {
     composable(route = feedScreenRoute) {
-        FeedScreen()
+        FeedScreen(onArticleClick = onArticleClick)
     }
+    articleDetailsScreen(onBackClick = onBackClick)
 }
