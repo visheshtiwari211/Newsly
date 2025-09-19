@@ -1,5 +1,6 @@
 package com.vishesh.newsly.ui.news.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,6 +24,7 @@ class ArticleDetailViewModel @Inject constructor(private val repository: NewsRep
 
     private fun fetchArticle(url: String) {
         viewModelScope.launch {
+            Log.d("ArticleDetailViewModel", "fetchArticle: $url")
             _uiState.value = _uiState.value.copy(isLoading = true)
             val article = repository.getArticleFromUrl(url)
             _uiState.value = NewsUiState(isLoading = false, articles = listOf(article), error = null)

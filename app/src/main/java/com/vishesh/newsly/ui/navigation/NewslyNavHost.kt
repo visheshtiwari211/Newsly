@@ -1,6 +1,5 @@
 package com.vishesh.newsly.ui.navigation
 
-import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -19,7 +18,7 @@ fun NewslyNavHost(modifier: Modifier = Modifier, navController: NavHostControlle
         FeedScreenSection(
             onArticleClick = { url ->
                 navController.navigateToArticleDetail(
-                    url = Uri.encode(url)
+                    url = url
                 )
             },
             onBackClick = { navController.popBackStack() })
