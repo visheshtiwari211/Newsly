@@ -4,7 +4,9 @@ import android.util.Log
 import com.vishesh.newsly.data.api.NewsApi
 import com.vishesh.newsly.data.local.ArticleDao
 import com.vishesh.newsly.data.local.ArticleEntity
+import com.vishesh.newsly.data.mapper.toArticles
 import com.vishesh.newsly.data.mapper.toListEntity
+import com.vishesh.newsly.domain.Article
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -24,4 +26,6 @@ class NewsRepository @Inject constructor(private val newsApi: NewsApi, private v
             Log.e("NewsRepository", "getTopHeadlines Response is null")
         }
     }
+
+    suspend fun getArticleFromUrl(url: String): Article = articleDao.getArticleFromUrl(url = url).toArticles()
 }
