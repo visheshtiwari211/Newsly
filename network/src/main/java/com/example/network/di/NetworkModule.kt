@@ -1,8 +1,8 @@
-package com.vishesh.newsly.di
+package com.example.network.di
 
+import com.example.network.api.NewsApi
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.vishesh.newsly.data.api.NewsApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,7 +41,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(httpClient: OkHttpClient, gson: Gson): Retrofit {
-        return Retrofit.Builder().baseUrl(BASE_URL).client(httpClient).addConverterFactory(GsonConverterFactory.create(gson)).build()
+        return Retrofit.Builder().baseUrl(BASE_URL).client(httpClient).addConverterFactory(
+            GsonConverterFactory.create(gson)).build()
     }
 
     @Provides

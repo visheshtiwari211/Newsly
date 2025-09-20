@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -40,4 +41,20 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //retrofit dependency
+    implementation(libs.retrofit)
+
+    //okhttp dependency
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
+    //gson convertor factory
+    implementation(libs.converter.gson)
+
+    //hilt-dependencies
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+
 }

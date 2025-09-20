@@ -1,6 +1,6 @@
-package com.vishesh.newsly.data.api
+package com.example.network.api
 
-import com.vishesh.newsly.data.model.TopHeadlinesDto
+import com.example.network.dto.TopHeadlinesDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

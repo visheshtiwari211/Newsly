@@ -1,4 +1,4 @@
-package com.vishesh.newsly.data.model
+package com.example.network.dto
 
 data class ArticleDto(
     val author: String,
