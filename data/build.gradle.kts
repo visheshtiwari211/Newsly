@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.network"
+    namespace = "com.example.data"
     compileSdk = 36
 
     defaultConfig {
@@ -34,7 +34,8 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":network"))
+    implementation(project(":database"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -42,19 +43,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    //retrofit dependency
-    api(libs.retrofit)
-
-    //okhttp dependency
-    implementation(platform(libs.okhttp.bom))
-    implementation(libs.okhttp)
-    implementation(libs.logging.interceptor)
-
-    //gson convertor factory
-    implementation(libs.converter.gson)
-
     //hilt-dependencies
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-
 }

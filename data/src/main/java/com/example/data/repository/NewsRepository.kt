@@ -1,12 +1,12 @@
-package com.vishesh.newsly.data.repository
+package com.example.data.repository
 
 import android.util.Log
-import com.vishesh.newsly.data.api.NewsApi
-import com.vishesh.newsly.data.local.ArticleDao
-import com.vishesh.newsly.data.local.ArticleEntity
-import com.vishesh.newsly.data.mapper.toArticles
-import com.vishesh.newsly.data.mapper.toListEntity
-import com.vishesh.newsly.domain.Article
+import com.example.data.domain.Article
+import com.example.data.mapper.toArticles
+import com.example.data.mapper.toListEntity
+import com.example.database.local.ArticleDao
+import com.example.database.local.ArticleEntity
+import com.example.network.api.NewsApi
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

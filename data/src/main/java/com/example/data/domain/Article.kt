@@ -1,13 +1,13 @@
-package com.vishesh.newsly.domain
+package com.example.data.domain
 
-import com.vishesh.newsly.data.model.SourceDto
+import com.example.database.local.SourceEntity
 
 data class Article(
     val author: String?,
     val content: String?,
     val description: String?,
     val publishedAt: String?,
-    val source: SourceDto?,
+    val source: SourceEntity?,
     val title: String?,
     val url: String?,
     val urlToImage: String?

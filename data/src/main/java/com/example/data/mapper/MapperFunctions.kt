@@ -1,21 +1,25 @@
-package com.vishesh.newsly.data.mapper
+package com.example.data.mapper
 
-import com.vishesh.newsly.data.local.ArticleEntity
-import com.vishesh.newsly.data.model.ArticleDto
-import com.vishesh.newsly.domain.Article
+import com.example.data.domain.Article
+import com.example.database.local.ArticleEntity
+import com.example.database.local.SourceEntity
+import com.example.network.dto.ArticleDto
+import com.example.network.dto.SourceDto
 
 fun ArticleDto.toEntity(): ArticleEntity {
     return ArticleEntity(
         author = this.author,
         description = this.description,
         publishedAt = this.publishedAt,
-        sourceDto = this.source,
+        sourceDto = this.source.toSourceEntity(),
         title = this.title,
         url = this.url,
         urlToImage = this.urlToImage,
         content = this.content
     )
 }
+
+fun SourceDto.toSourceEntity(): SourceEntity  = SourceEntity(name = this.name, sourceId = this.sourceId)
 
 fun List<ArticleDto>.toListEntity(): List<ArticleEntity> {
     return this.map {
