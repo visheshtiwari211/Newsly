@@ -101,6 +101,9 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
 
+    //livedata
+    implementation(libs.androidx.compose.runtime.livedata)
+
 }
 
 room {

@@ -21,4 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Newsly"
 include(":app")
- 
+include(":network")
+include(":feature")
+include(":common")
+include(":database")
+include(":model")
