@@ -8,7 +8,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.vishesh.newsly.ui.news.ui.articledetail.ArticleDetailScreen
-import java.net.URLDecoder
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
@@ -28,9 +27,7 @@ fun NavGraphBuilder.articleDetailsScreen(modifier: Modifier = Modifier, onBackCl
         route = article_detail_screen_rotue,
         arguments = listOf(navArgument("url") { type = NavType.StringType })
     ) {
-        val encodedUrl = it.arguments?.getString("url") ?: ""
-        val articleUrl = URLDecoder.decode(encodedUrl, StandardCharsets.UTF_8.toString())
-        ArticleDetailScreen(onBackClick = onBackClick, articleUrl = articleUrl)
+        ArticleDetailScreen(onBackClick = onBackClick)
     }
 }
 
