@@ -1,9 +1,9 @@
-package com.vishesh.newsly.di
+package com.example.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.vishesh.newsly.data.local.ArticleDao
-import com.vishesh.newsly.data.local.NewsDatabase
+import com.example.database.db.NewsDatabase
+import com.example.database.local.ArticleDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

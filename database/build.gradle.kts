@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.androidx.room)
 }
 
 android {
@@ -40,4 +42,25 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //room dependency
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+
+    //sqlite dependency
+    implementation(libs.androidx.sqlite.bundled)
+
+    // Room testing
+    testImplementation(libs.androidx.room.testing)
+
+    // optional for coroutines support
+    implementation(libs.androidx.room.ktx)
+
+    //hilt-dependencies
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }

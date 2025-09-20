@@ -1,10 +1,9 @@
-package com.vishesh.newsly.data.local
+package com.example.database.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.vishesh.newsly.data.model.SourceDto
 
 @Entity(tableName = "articles")
 data class ArticleEntity(
@@ -19,7 +18,7 @@ data class ArticleEntity(
     @ColumnInfo(name = "publishedAt")
     val publishedAt: String?,
     @Embedded
-    val sourceDto: SourceDto,
+    val sourceDto: SourceEntity,
     @ColumnInfo(name = "title")
     val title: String?,
     @ColumnInfo(name = "url")

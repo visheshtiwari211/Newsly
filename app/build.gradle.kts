@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.androidx.room)
 }
 
 android {
@@ -73,19 +72,6 @@ dependencies {
     //hilt-navigation
     implementation(libs.androidx.hilt.navigation.compose)
 
-    //room dependency
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-
-    //sqlite dependency
-    implementation(libs.androidx.sqlite.bundled)
-
-    // Room testing
-    testImplementation(libs.androidx.room.testing)
-
-    // optional for coroutines support
-    implementation(libs.androidx.room.ktx)
-
     //coil
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
@@ -93,8 +79,4 @@ dependencies {
     //livedata
     implementation(libs.androidx.compose.runtime.livedata)
 
-}
-
-room {
-    schemaDirectory("$projectDir/schemas")
 }

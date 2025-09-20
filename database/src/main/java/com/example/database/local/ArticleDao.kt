@@ -1,4 +1,4 @@
-package com.vishesh.newsly.data.local
+package com.example.database.local
 
 import androidx.room.Dao
 import androidx.room.Insert
