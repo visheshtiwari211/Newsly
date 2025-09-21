@@ -29,19 +29,19 @@ fun List<ArticleDto>.toListEntity(): List<ArticleEntity> {
 
 fun List<ArticleEntity>.toArticles(): List<Article> {
     return this.map {
-        it.toArticles()
+        it.toArticle()
     }
 }
 
-fun ArticleEntity.toArticles(): Article {
+fun ArticleEntity.toArticle(): Article {
     return Article(
-        author = this.author,
-        content = this.content,
-        description = this.description,
-        publishedAt = this.publishedAt,
-        source = this.sourceDto,
-        title = this.title,
-        url = this.url,
-        urlToImage = this.urlToImage
+        author = this.author ?: "",
+        content = this.content ?: "",
+        description = this.description ?: "",
+        publishedAt = this.publishedAt ?: "",
+        source = this.sourceDto ?: SourceEntity(sourceId = "", name = ""),
+        title = this.title ?: "",
+        url = this.url ?: "",
+        urlToImage = this.urlToImage ?: ""
     )
 }

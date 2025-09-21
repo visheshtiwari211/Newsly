@@ -2,16 +2,17 @@ package com.example.data.repository
 
 import android.util.Log
 import com.example.data.domain.Article
+import com.example.data.mapper.toArticle
 import com.example.data.mapper.toArticles
 import com.example.data.mapper.toListEntity
 import com.example.database.local.ArticleDao
-import com.example.database.local.ArticleEntity
 import com.example.network.api.NewsApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class NewsRepository @Inject constructor(private val newsApi: NewsApi, private val articleDao: ArticleDao) {
-    fun getAllArticles(): Flow<List<ArticleEntity>> = articleDao.getAllArticles()
+    fun getAllArticles(): Flow<List<Article>> = articleDao.getAllArticles().map { it.toArticles() }
 
     suspend fun getTopHeadline(country: String, apiKey: String) {
         Log.d("NewsRepository", "inside getTopHeadlines")
@@ -27,5 +28,5 @@ class NewsRepository @Inject constructor(private val newsApi: NewsApi, private v
         }
     }
 
-    suspend fun getArticleFromUrl(url: String): Article = articleDao.getArticleFromUrl(url = url).toArticles()
+    suspend fun getArticleFromUrl(url: String): Article = articleDao.getArticleFromUrl(url = url).toArticle()
 }

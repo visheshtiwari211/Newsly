@@ -4,9 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.vishesh.newsly.ui.navigation.articleDetail.navigateToArticleDetail
-import com.vishesh.newsly.ui.navigation.feed.FeedScreenSection
-import com.vishesh.newsly.ui.navigation.feed.feedScreenRoute
+import com.example.detail.navigation.articleDetailsScreen
+import com.example.detail.navigation.navigateToArticleDetail
+import com.example.feed.navigation.FeedScreenSection
+import com.example.feed.navigation.feedScreenRoute
 
 @Composable
 fun NewslyNavHost(modifier: Modifier = Modifier, navController: NavHostController) {
@@ -21,6 +22,10 @@ fun NewslyNavHost(modifier: Modifier = Modifier, navController: NavHostControlle
                     url = url
                 )
             },
-            onBackClick = { navController.popBackStack() })
+            onBackClick = { navController.popBackStack() },
+            detailScreenDestination = {
+                articleDetailsScreen(onBackClick = { navController.popBackStack() })
+            }
+        )
     }
 }
