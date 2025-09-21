@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.example.data.domain.Article
+import com.example.model.model.Article
 
 @Composable
 fun FeedItemCard(article: Article, onArticleClick: (String) -> Unit) {

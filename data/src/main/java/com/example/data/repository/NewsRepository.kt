@@ -1,11 +1,11 @@
 package com.example.data.repository
 
 import android.util.Log
-import com.example.data.domain.Article
 import com.example.data.mapper.toArticle
 import com.example.data.mapper.toArticles
 import com.example.data.mapper.toListEntity
 import com.example.database.local.ArticleDao
+import com.example.model.model.Article
 import com.example.network.api.NewsApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

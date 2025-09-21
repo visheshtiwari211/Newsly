@@ -18,7 +18,7 @@ data class ArticleEntity(
     @ColumnInfo(name = "publishedAt")
     val publishedAt: String?,
     @Embedded
-    val sourceDto: SourceEntity,
+    val sourceEntity: SourceEntity,
     @ColumnInfo(name = "title")
     val title: String?,
     @ColumnInfo(name = "url")

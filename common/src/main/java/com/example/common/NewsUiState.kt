@@ -1,6 +1,6 @@
 package com.example.common
 
-import com.example.data.domain.Article
+import com.example.model.model.Article
 
 data class NewsUiState(
     val isLoading: Boolean = false,

@@ -39,8 +39,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import coil3.compose.AsyncImage
 import com.example.common.NewsUiState
-import com.example.data.domain.Article
 import com.example.detail.viewmodel.ArticleDetailViewModel
+import com.example.model.model.Article
 
 @Composable
 fun ArticleDetailScreen(
