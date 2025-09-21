@@ -14,7 +14,11 @@ fun NewslyNavHost(modifier: Modifier = Modifier, navController: NavHostControlle
     NavHost(
         navController = navController,
         startDestination = feedScreenRoute,
-        modifier = modifier
+        modifier = modifier,
+        enterTransition = NavAnimations.enter,
+        exitTransition = NavAnimations.exit,
+        popEnterTransition = NavAnimations.popEnter,
+        popExitTransition = NavAnimations.popExit
     ) {
         FeedScreenSection(
             onArticleClick = { url ->

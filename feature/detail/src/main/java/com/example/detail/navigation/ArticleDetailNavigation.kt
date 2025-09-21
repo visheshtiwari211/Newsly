@@ -25,7 +25,7 @@ fun NavController.navigateToArticleDetail(
 fun NavGraphBuilder.articleDetailsScreen(modifier: Modifier = Modifier, onBackClick: () -> Unit) {
     composable(
         route = article_detail_screen_rotue,
-        arguments = listOf(navArgument("url") { type = NavType.StringType })
+        arguments = listOf(navArgument("url") { type = NavType.StringType }),
     ) {
         ArticleDetailScreen(onBackClick = onBackClick)
     }
