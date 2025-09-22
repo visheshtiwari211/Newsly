@@ -68,4 +68,9 @@ dependencies {
     //coil
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+
+    //paging
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose.v332) // check latest
+
 }

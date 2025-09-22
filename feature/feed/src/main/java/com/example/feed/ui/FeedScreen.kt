@@ -23,9 +23,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.feed.ui.components.FeedItemCard
 import com.example.feed.viewmodel.FeedViewModel
+import com.example.model.model.Article
+import com.example.model.model.Source
 
 @Composable
 fun FeedScreen(
@@ -33,8 +35,8 @@ fun FeedScreen(
     onArticleClick: (String) -> Unit,
     viewModel: FeedViewModel = hiltViewModel()
 ) {
-    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
-    Log.d("FeedScreen", "uiState: $uiState")
+    val articles = viewModel.pagedArticle.collectAsLazyPagingItems()
+    Log.d("FeedScreen", "uiState: $articles")
 
     Column(
         modifier = modifier
@@ -79,8 +81,17 @@ fun FeedScreen(
             verticalArrangement = Arrangement.spacedBy(20.dp),
             contentPadding = PaddingValues(bottom = 16.dp)
         ) {
-            items(count = uiState.value.articles.size) { index ->
-                val article = uiState.value.articles[index]
+            items(count = articles.itemCount) { index ->
+                val article = articles[index] ?: Article(
+                    author = "",
+                    content = "",
+                    description = "",
+                    publishedAt = "",
+                    source = Source("", ""),
+                    title = "",
+                    url = "",
+                    urlToImage = ""
+                )
                 FeedItemCard(article, onArticleClick = onArticleClick)
             }
         }
