@@ -1,9 +1,15 @@
 package com.example.data.repository
 
 import android.util.Log
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.example.data.mapper.toArticle
-import com.example.data.mapper.toArticles
 import com.example.data.mapper.toListEntity
+import com.example.data.paging.ArticleRemoteMediator
+import com.example.database.db.NewsDatabase
 import com.example.database.local.ArticleDao
 import com.example.model.model.Article
 import com.example.network.api.NewsApi
@@ -11,8 +17,28 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class NewsRepository @Inject constructor(private val newsApi: NewsApi, private val articleDao: ArticleDao) {
-    fun getAllArticles(): Flow<List<Article>> = articleDao.getAllArticles().map { it.toArticles() }
+class NewsRepository @Inject constructor(
+    private val newsApi: NewsApi,
+    private val articleDao: ArticleDao,
+    private val newsDatabase: NewsDatabase
+) {
+    @OptIn(ExperimentalPagingApi::class)
+    fun getPagedArticles(country: String, apiKey: String): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            remoteMediator = ArticleRemoteMediator(
+                newsApi = newsApi,
+                newsDatabase = newsDatabase,
+                articleDao = articleDao,
+                country = country,
+                key = apiKey
+            ),
+            pagingSourceFactory = { articleDao.getAllArticles() },
+            initialKey = null,
+        ).flow.map { pagingDataFlow ->
+            pagingDataFlow.map { it.toArticle() }
+        }
+    }
 
     suspend fun getTopHeadline(country: String, apiKey: String) {
         Log.d("NewsRepository", "inside getTopHeadlines")
@@ -28,5 +54,6 @@ class NewsRepository @Inject constructor(private val newsApi: NewsApi, private v
         }
     }
 
-    suspend fun getArticleFromUrl(url: String): Article = articleDao.getArticleFromUrl(url = url).toArticle()
+    suspend fun getArticleFromUrl(url: String): Article =
+        articleDao.getArticleFromUrl(url = url).toArticle()
 }
