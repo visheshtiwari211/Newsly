@@ -47,4 +47,21 @@ dependencies {
     //hilt-dependencies
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+    //paging
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
+
+    //room dependency
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+
+    //sqlite dependency
+    implementation(libs.androidx.sqlite.bundled)
+
+    // Room testing
+    testImplementation(libs.androidx.room.testing)
+
+    // optional for coroutines support
+    implementation(libs.androidx.room.ktx)
 }
