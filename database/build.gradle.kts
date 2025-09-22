@@ -60,6 +60,9 @@ dependencies {
     //hilt-dependencies
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+    // Paging support for Room
+    implementation(libs.androidx.room.paging)
 }
 
 room {

@@ -17,6 +17,7 @@ okhttpBom = "5.1.0"
 pagingCompose = "3.4.0-alpha04"
 pagingComposeVersion = "3.3.2"
 pagingRuntime = "3.3.6"
+pagingRuntimeVersion = "3.3.2"
 retrofit = "3.0.0"
 room = "2.8.0"
 runtimeLivedata = "1.9.1"
@@ -35,7 +36,9 @@ androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-com
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 androidx-paging-compose-v332 = { module = "androidx.paging:paging-compose", version.ref = "pagingComposeVersion" }
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
+androidx-paging-runtime-v332 = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntimeVersion" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
 androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilCompose" }
