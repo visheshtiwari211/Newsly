@@ -25,4 +25,6 @@ data class ArticleEntity(
     val url: String?,
     @ColumnInfo(name = "urlToImage")
     val urlToImage: String?,
+    @ColumnInfo(name = "isFavorite")
+    val isFavorite: Boolean
 )
