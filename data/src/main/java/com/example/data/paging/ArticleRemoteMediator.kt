@@ -44,7 +44,8 @@ class ArticleRemoteMediator(
                     articleDao.deleteAll()
                 }
             }
-            val articles = response.body()?.articles?.toListEntity() ?: emptyList()
+            val favoriteArticles = articleDao.getFavoriteArticles()
+            val articles = response.body()?.articles?.toListEntity(favoriteArticles = favoriteArticles) ?: emptyList()
             articleDao.insertArticles(articles)
             return MediatorResult.Success(endOfPaginationReached = articles.isEmpty())
         } catch (e: Exception) {

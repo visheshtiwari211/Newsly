@@ -55,7 +55,12 @@ fun FeedScreen(
             OutlinedTextField(
                 value = "", // TODO: wire with search state in ViewModel
                 onValueChange = { /* viewModel.onSearchQueryChanged(it) */ },
-                placeholder = { Text("Search articles...", style = MaterialTheme.typography.bodyMedium)},
+                placeholder = {
+                    Text(
+                        "Search articles...",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                },
                 singleLine = true,
                 modifier = Modifier
                     .weight(1f)
@@ -76,7 +81,7 @@ fun FeedScreen(
             }
         }
 
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(20.dp),
             contentPadding = PaddingValues(bottom = 16.dp)
@@ -90,9 +95,15 @@ fun FeedScreen(
                     source = Source("", ""),
                     title = "",
                     url = "",
-                    urlToImage = ""
+                    urlToImage = "",
+                    isFavorite = false
                 )
-                FeedItemCard(article, onArticleClick = onArticleClick)
+                FeedItemCard(
+                    article,
+                    onArticleClick = onArticleClick,
+                    onFavoriteClick = {articleX, isFavorite ->  viewModel.setIsFavoriteArticle(url = articleX.url ?: "", isFavorite = !article.isFavorite)},
+                    isFavorite = article.isFavorite
+                )
             }
         }
     }

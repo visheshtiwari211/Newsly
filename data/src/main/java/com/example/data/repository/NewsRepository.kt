@@ -46,7 +46,8 @@ class NewsRepository @Inject constructor(
         if (response.isSuccessful) {
             Log.d("NewsRepository", "inside getTopHeadlines response: ${response.body()}")
             response.body()?.articles?.let { articlesDto ->
-                val articlesEntityList = articlesDto.toListEntity()
+                val favoriteArticlesEntityList = articleDao.getFavoriteArticles()
+                val articlesEntityList = articlesDto.toListEntity(favoriteArticles = favoriteArticlesEntityList)
                 articleDao.insertArticles(articlesEntityList)
             } ?: Log.e("NewsRepository", "getTopHeadlines ResponseBody articles is null: $response")
         } else {
@@ -56,4 +57,8 @@ class NewsRepository @Inject constructor(
 
     suspend fun getArticleFromUrl(url: String): Article =
         articleDao.getArticleFromUrl(url = url).toArticle()
+
+    suspend fun setFavoriteArticles(url: String, isFavorite: Boolean) {
+        articleDao.setFavoriteArticle(url = url, isFavorite = isFavorite)
+    }
 }

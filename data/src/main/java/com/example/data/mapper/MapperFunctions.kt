@@ -7,7 +7,7 @@ import com.example.model.model.Source
 import com.example.network.dto.ArticleDto
 import com.example.network.dto.SourceDto
 
-fun ArticleDto.toEntity(): ArticleEntity {
+fun ArticleDto.toEntity(isFavorite: Boolean): ArticleEntity {
     return ArticleEntity(
         author = this.author,
         description = this.description,
@@ -16,15 +16,22 @@ fun ArticleDto.toEntity(): ArticleEntity {
         title = this.title,
         url = this.url,
         urlToImage = this.urlToImage,
-        content = this.content
+        content = this.content,
+        isFavorite = isFavorite
     )
 }
 
 fun SourceDto.toSourceEntity(): SourceEntity  = SourceEntity(name = this.name, sourceId = this.sourceId)
 
-fun List<ArticleDto>.toListEntity(): List<ArticleEntity> {
-    return this.map {
-        it.toEntity()
+fun List<ArticleDto>.toListEntity(favoriteArticles: List<ArticleEntity>): List<ArticleEntity> {
+    val favoriteEntityMap: Map<String, Boolean> =
+        favoriteArticles.mapNotNull {articleEntity ->
+            articleEntity.url?.let { it to articleEntity.isFavorite }
+        }.toMap()
+
+    return this.map { articleDto ->
+        val isFavorite = favoriteEntityMap[articleDto.url] ?: false
+        articleDto.toEntity(isFavorite = isFavorite)
     }
 }
 
@@ -43,7 +50,8 @@ fun ArticleEntity.toArticle(): Article {
         source = this.sourceEntity.toSource() ?: Source(sourceId = "", name = ""),
         title = this.title ?: "",
         url = this.url ?: "",
-        urlToImage = this.urlToImage ?: ""
+        urlToImage = this.urlToImage ?: "",
+        isFavorite = this.isFavorite
     )
 }
 

@@ -19,4 +19,10 @@ interface ArticleDao {
 
     @Query("SELECT * FROM articles WHERE url = :url LIMIT 1")
     suspend fun getArticleFromUrl(url: String): ArticleEntity
+
+    @Query("UPDATE articles SET isFavorite = :isFavorite WHERE url = :url")
+    suspend fun setFavoriteArticle(url: String, isFavorite: Boolean)
+
+    @Query("SELECT * FROM articles WHERE isFavorite = 1")
+    suspend fun getFavoriteArticles(): List<ArticleEntity>
 }
