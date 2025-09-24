@@ -24,5 +24,5 @@ interface ArticleDao {
     suspend fun setFavoriteArticle(url: String, isFavorite: Boolean)
 
     @Query("SELECT * FROM articles WHERE isFavorite = 1")
-    suspend fun getFavoriteArticleFromDb(): List<ArticleEntity>
+    suspend fun getFavoriteArticles(): List<ArticleEntity>
 }
