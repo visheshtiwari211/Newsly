@@ -1,4 +1,4 @@
-package com.example.favorite
+package com.example.favorite.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -27,11 +27,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.favorite.viewmodel.FavoriteViewModel
 import com.example.model.model.Article
 import kotlinx.coroutines.launch
 
 @Composable
-fun FavoriteScreen(viewModel: FavoriteViewModel = hiltViewModel()) {
+fun FavoriteScreen(onBackClick: () -> Unit, viewModel: FavoriteViewModel = hiltViewModel()) {
     val favoriteArticles by viewModel.favoriteArticles.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
