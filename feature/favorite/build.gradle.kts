@@ -57,4 +57,8 @@ dependencies {
 
     //hilt-navigation
     implementation(libs.androidx.hilt.navigation.compose)
+
+    //navigation
+    implementation(libs.androidx.navigation.common.ktx)
+    implementation(libs.androidx.navigation.compose)
 }
