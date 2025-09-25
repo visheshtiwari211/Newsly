@@ -1,4 +1,4 @@
-package com.example.favorite
+package com.example.favorite.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
