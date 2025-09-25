@@ -48,6 +48,7 @@ android {
 dependencies {
     implementation(project(":feature:feed"))
     implementation(project(":feature:detail"))
+    implementation(project(":feature:favorite"))
     
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
