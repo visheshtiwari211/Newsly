@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.detail.navigation.articleDetailsScreen
 import com.example.detail.navigation.navigateToArticleDetail
+import com.example.favorite.navigation.FavoriteScreenSection
 import com.example.feed.navigation.FeedScreenSection
 import com.example.feed.navigation.feedScreenRoute
 
@@ -31,5 +32,7 @@ fun NewslyNavHost(modifier: Modifier = Modifier, navController: NavHostControlle
                 articleDetailsScreen(onBackClick = { navController.popBackStack() })
             }
         )
+
+        FavoriteScreenSection(onBackClick = { navController.popBackStack() })
     }
 }
