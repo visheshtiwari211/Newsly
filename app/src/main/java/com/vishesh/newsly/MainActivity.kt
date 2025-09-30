@@ -11,8 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
 import com.vishesh.newsly.navigation.NewslyNavHost
+import com.vishesh.newsly.navigation.rememberNewslyAppState
 import com.vishesh.newsly.ui.theme.NewslyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,12 +24,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             NewslyTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    val navHost = rememberNavController()
+                    val appState = rememberNewslyAppState()
                     NewslyNavHost(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(innerPadding),
-                        navController = navHost
+                        navController = appState.navHostController
                     )
                 }
             }
