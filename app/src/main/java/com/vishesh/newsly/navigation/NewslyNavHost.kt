@@ -1,4 +1,4 @@
-package com.vishesh.newsly.ui.navigation
+package com.vishesh.newsly.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
