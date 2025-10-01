@@ -62,5 +62,5 @@ class NewsRepository @Inject constructor(
         articleDao.setFavoriteArticle(url = url, isFavorite = isFavorite)
     }
 
-    fun getFavoriteArticles(): List<Article> = articleDao.getFavoriteArticles().map { it.toArticle() }
+    suspend fun getFavoriteArticles(): List<Article> = articleDao.getFavoriteArticles().map { it.toArticle() }
 }

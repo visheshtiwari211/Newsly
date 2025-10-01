@@ -9,6 +9,7 @@ import com.example.data.mapper.toListEntity
 import com.example.database.db.NewsDatabase
 import com.example.database.local.ArticleDao
 import com.example.database.local.ArticleEntity
+import com.example.logging.NewslyLogger
 import com.example.network.api.NewsApi
 
 @OptIn(ExperimentalPagingApi::class)
@@ -38,6 +39,7 @@ class ArticleRemoteMediator(
                 }
             }
             val response = newsApi.getTopHeadlines(country = country, apiKey = key)
+            NewslyLogger().d(msg = "getTopHeadlines response: $response")
 
             newsDatabase.withTransaction {
                 if (loadType == LoadType.REFRESH) {
@@ -45,10 +47,13 @@ class ArticleRemoteMediator(
                 }
             }
             val favoriteArticles = articleDao.getFavoriteArticles()
+            NewslyLogger().d(msg = "favoriteArticles: $favoriteArticles")
             val articles = response.body()?.articles?.toListEntity(favoriteArticles = favoriteArticles) ?: emptyList()
+            NewslyLogger().d(msg = "articles inserted in db: $articles")
             articleDao.insertArticles(articles)
             return MediatorResult.Success(endOfPaginationReached = articles.isEmpty())
         } catch (e: Exception) {
+            NewslyLogger().d(msg = "error: ${e.message}")
             MediatorResult.Error(e)
         }
     }
