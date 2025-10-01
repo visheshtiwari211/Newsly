@@ -27,7 +27,6 @@ class FavoriteViewModel @Inject constructor(val repository: NewsRepository): Vie
             } catch (e: Exception) {
                 _favoriteArticles.value = _favoriteArticles.value.copy(error = e.message)
             }
-
         }
     }
 }
