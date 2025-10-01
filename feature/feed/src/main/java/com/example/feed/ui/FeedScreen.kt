@@ -1,6 +1,5 @@
 package com.example.feed.ui
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -37,7 +36,7 @@ fun FeedScreen(
     viewModel: FeedViewModel = hiltViewModel()
 ) {
     val articles = viewModel.pagedArticle.collectAsLazyPagingItems()
-    NewslyLogger().d("FeedScreen", "uiState: $articles")
+    NewslyLogger().d("FeedScreen", "uiState: ${articles.itemCount}")
 
     Column(
         modifier = modifier
