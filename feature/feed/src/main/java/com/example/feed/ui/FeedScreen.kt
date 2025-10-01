@@ -26,6 +26,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.feed.ui.components.FeedItemCard
 import com.example.feed.viewmodel.FeedViewModel
+import com.example.logging.NewslyLogger
 import com.example.model.model.Article
 import com.example.model.model.Source
 
@@ -36,7 +37,7 @@ fun FeedScreen(
     viewModel: FeedViewModel = hiltViewModel()
 ) {
     val articles = viewModel.pagedArticle.collectAsLazyPagingItems()
-    Log.d("FeedScreen", "uiState: $articles")
+    NewslyLogger().d("FeedScreen", "uiState: $articles")
 
     Column(
         modifier = modifier

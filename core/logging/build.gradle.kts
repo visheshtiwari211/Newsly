@@ -2,10 +2,11 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
-    namespace = "com.example.data"
+    namespace = "com.example.logging"
     compileSdk = 36
 
     defaultConfig {
@@ -34,10 +35,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":network"))
-    implementation(project(":database"))
-    implementation(project(":model"))
-    implementation(project(":core:logging"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -45,24 +43,10 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //timber dependency
+    implementation(libs.timber)
+
     //hilt-dependencies
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-
-    //paging
-    implementation(libs.androidx.paging.runtime)
-    implementation(libs.androidx.paging.compose)
-
-    //room dependency
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-
-    //sqlite dependency
-    implementation(libs.androidx.sqlite.bundled)
-
-    // Room testing
-    testImplementation(libs.androidx.room.testing)
-
-    // optional for coroutines support
-    implementation(libs.androidx.room.ktx)
 }

@@ -1,6 +1,5 @@
 package com.example.detail.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -8,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.common.NewsUiState
 import com.example.data.repository.NewsRepository
+import com.example.logging.NewslyLogger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,14 +24,14 @@ class ArticleDetailViewModel @Inject constructor(private val repository: NewsRep
 
     private fun fetchArticle(url: String) {
         viewModelScope.launch {
-            Log.d("ArticleDetailViewModel", "fetchArticle: $url")
+            NewslyLogger().d("ArticleDetailViewModel", "fetchArticle: $url")
             _uiState.value = NewsUiState(isLoading = true)
             try {
                 val article = repository.getArticleFromUrl(url)
                 _uiState.value =
                     NewsUiState(isLoading = false, articles = listOf(article), error = null)
             } catch (e: Exception) {
-                Log.d("ArticleDetailViewModel", "fetchArticle error: ${e.message}")
+                NewslyLogger().d("ArticleDetailViewModel", "fetchArticle error: ${e.message}")
                 _uiState.value = NewsUiState(error = e.message)
             }
         }
