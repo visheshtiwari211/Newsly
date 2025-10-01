@@ -37,6 +37,7 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":database"))
     implementation(project(":model"))
+    implementation(project(":core:logging"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

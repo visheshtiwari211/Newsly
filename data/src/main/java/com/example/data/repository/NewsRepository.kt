@@ -1,6 +1,5 @@
 package com.example.data.repository
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -11,6 +10,7 @@ import com.example.data.mapper.toListEntity
 import com.example.data.paging.ArticleRemoteMediator
 import com.example.database.db.NewsDatabase
 import com.example.database.local.ArticleDao
+import com.example.logging.NewslyLogger
 import com.example.model.model.Article
 import com.example.network.api.NewsApi
 import kotlinx.coroutines.flow.Flow
@@ -41,17 +41,17 @@ class NewsRepository @Inject constructor(
     }
 
     suspend fun getTopHeadline(country: String, apiKey: String) {
-        Log.d("NewsRepository", "inside getTopHeadlines")
+        NewslyLogger().d("NewsRepository", "inside getTopHeadlines")
         val response = newsApi.getTopHeadlines(country = country, apiKey = apiKey)
         if (response.isSuccessful) {
-            Log.d("NewsRepository", "inside getTopHeadlines response: ${response.body()}")
+            NewslyLogger().d("NewsRepository", "inside getTopHeadlines response: ${response.body()}")
             response.body()?.articles?.let { articlesDto ->
                 val favoriteArticlesEntityList = articleDao.getFavoriteArticles()
                 val articlesEntityList = articlesDto.toListEntity(favoriteArticles = favoriteArticlesEntityList)
                 articleDao.insertArticles(articlesEntityList)
-            } ?: Log.e("NewsRepository", "getTopHeadlines ResponseBody articles is null: $response")
+            } ?: NewslyLogger().e("NewsRepository", "getTopHeadlines ResponseBody articles is null: $response")
         } else {
-            Log.e("NewsRepository", "getTopHeadlines Response is null")
+            NewslyLogger().e("NewsRepository", "getTopHeadlines Response is null")
         }
     }
 

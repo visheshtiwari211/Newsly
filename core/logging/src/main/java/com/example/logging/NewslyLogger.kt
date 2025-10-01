@@ -2,7 +2,7 @@ package com.example.logging
 
 import timber.log.Timber
 
-class Logger: LoggingInterface {
+class NewslyLogger: LoggingInterface {
     override fun d(tag: String, msg: String) {
         Timber.d(tag, msg)
     }

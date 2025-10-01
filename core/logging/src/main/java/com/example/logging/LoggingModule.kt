@@ -12,6 +12,6 @@ object LoggingModule {
     @Provides
     @Singleton
     fun provideLogger(): LoggingInterface {
-        return Logger()
+        return NewslyLogger()
     }
 }
