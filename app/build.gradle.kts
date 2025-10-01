@@ -82,5 +82,6 @@ dependencies {
     //livedata
     implementation(libs.androidx.compose.runtime.livedata)
 
-
+    //timber dependency
+    implementation(libs.timber)
 }
